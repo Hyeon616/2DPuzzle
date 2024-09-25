@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64da440220adac4eb083db62b5d4fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 5
-  height: 5
+  width: 7
+  height: 7
   bgTilePrefab: {fileID: 8636793919112299476, guid: ef144e5653279144dbb3b18247807c4e, type: 3}
   gems:
   - {fileID: 959379147221571967, guid: 9fb63b7ed0c05cb4b8293ea9a6079489, type: 3}
@@ -161,6 +161,7 @@ MonoBehaviour:
   - {fileID: 6727168066811862895, guid: b8277f5e93edbb743959398123de880b, type: 3}
   - {fileID: 6929005544643955960, guid: a5e3a7c833a0ab04ba2c9489f4473aba, type: 3}
   gemSpeed: 7
+  matchFinder: {fileID: 0}
 --- !u!4 &358420352
 Transform:
   m_ObjectHideFlags: 0
@@ -312,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb1facaaf493454b8937bb37f3f9426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentMatches: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

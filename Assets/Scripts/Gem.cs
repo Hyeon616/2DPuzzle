@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Gem : MonoBehaviour
@@ -26,6 +28,8 @@ public class Gem : MonoBehaviour
     public GemType type;
 
     public bool isMatched;
+
+    private Vector2Int previousPos;
 
     void Update()
     {
@@ -78,6 +82,9 @@ public class Gem : MonoBehaviour
 
     private void MovePieces()
     {
+        previousPos = posIndex;
+
+
         if (swipeAngle < 45 && swipeAngle > -45 && posIndex.x < board.width - 1)
         {
             otherGem = board.allGems[posIndex.x + 1, posIndex.y];
@@ -105,6 +112,31 @@ public class Gem : MonoBehaviour
 
         board.allGems[posIndex.x, posIndex.y] = this;
         board.allGems[otherGem.posIndex.x, otherGem.posIndex.y] = otherGem;
+
+        CheckMove();
+
+    }
+
+    private async void CheckMove()
+    {
+        await Task.Delay(500); // 0.5ÃÊ ´ë±â
+
+        board.matchFinder.FindAllMatches();
+
+        if (otherGem != null)
+        {
+            if (!isMatched && !otherGem.isMatched)
+            {
+                otherGem.posIndex = posIndex;
+                posIndex = previousPos;
+                board.allGems[posIndex.x, posIndex.y] = this;
+                board.allGems[otherGem.posIndex.x, otherGem.posIndex.y] = otherGem;
+            }
+            else
+            {
+                await board.DestroyMatches();
+            }
+        }
     }
 
 
